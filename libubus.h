@@ -234,6 +234,11 @@ int ubus_connect_ctx(struct ubus_context *ctx, const char *path);
 void ubus_auto_connect(struct ubus_auto_conn *conn);
 int ubus_reconnect(struct ubus_context *ctx, const char *path);
 
+static inline bool ubus_connected(struct ubus_context *ctx)
+{
+	return (ctx && ctx->sock.registered);
+}
+
 /* call this only for struct ubus_context pointers returned by ubus_connect() */
 void ubus_free(struct ubus_context *ctx);
 
